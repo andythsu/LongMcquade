@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.username, this.password).then(res => {
       if (res) {
-        const user = this.authService.currentUser;
-        this.router.navigate(["/overview", user]);
+        this.router.navigate(["/overview"]);
       } else {
         console.log("wrong credentials");
       }

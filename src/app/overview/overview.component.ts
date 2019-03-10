@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, ParamMap } from "@angular/router";
-import { switchMap } from "rxjs/operators";
+import { Router } from "@angular/router";
+import { AuthService } from "../services/auth/auth.service";
 
 @Component({
   selector: "app-overview",
@@ -9,9 +9,18 @@ import { switchMap } from "rxjs/operators";
 })
 export class OverviewComponent implements OnInit {
   user: string;
-  constructor(private _activatedRoute: ActivatedRoute) {}
+  constructor(private _authService: AuthService, private _router: Router) {
+    if (!this._authService.isAuthenticated()) {
+      this._router.navigate(["login"]);
+    }
+  }
 
   ngOnInit() {
-    this.user = this._activatedRoute.snapshot.paramMap.get("id");
+    this.user = this._authService.currentUser;
+  }
+
+  onLogout() {
+    this._authService.logout();
+    this._router.navigate(["/login"]);
   }
 }

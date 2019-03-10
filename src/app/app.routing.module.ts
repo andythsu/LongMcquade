@@ -16,11 +16,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "overview/:id",
-    component: OverviewComponent,
-    canActivate: [AuthguardService]
-  },
-  {
     path: "**",
     component: PagenotfoundComponent
   }

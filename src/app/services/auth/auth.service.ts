@@ -1,7 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-
-import { tap, delay } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -9,23 +6,29 @@ import { tap, delay } from "rxjs/operators";
 export class AuthService {
   constructor() {}
 
-  isLoggedIn = false;
   fakeUser = "aaa";
   fakePass = "123";
   currentUser: string;
   TOKEN: string = "user";
 
   isAuthenticated(): boolean {
-    return localStorage.getItem(this.TOKEN) !== null;
+    if (this.currentUser === null || this.currentUser === undefined) {
+      this.currentUser = localStorage.getItem(this.TOKEN);
+    }
+    return this.currentUser !== null && this.currentUser !== undefined;
   }
   login(username, password): Promise<any> {
     return new Promise((resolve, reject) => {
       if (username == this.fakeUser && password == this.fakePass) {
         this.currentUser = username;
-        localStorage.setItem(this.TOKEN, username);
+        localStorage.setItem(this.TOKEN, this.currentUser);
         resolve(true);
       }
       resolve(false);
     });
+  }
+  logout() {
+    this.currentUser = undefined;
+    localStorage.removeItem(this.TOKEN);
   }
 }
