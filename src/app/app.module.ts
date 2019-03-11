@@ -8,7 +8,6 @@ import { PagenotfoundModule } from "./pagenotfound/pagenotfound.module";
 import { OverviewModule } from "./overview/overview.module";
 import { TutorOverviewModule } from "./tutoroverview/tutoroverview.module";
 import { SigninModule } from "./signin/signin.module";
-import { AlertModule } from "./alert/alert.module";
 
 @NgModule({
   declarations: [AppComponent],

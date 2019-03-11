@@ -16,27 +16,21 @@ export class LoginComponent implements OnInit {
   @ViewChild("usernameField")
   usernameFieldElement: ElementRef;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private _authService: AuthService, private _router: Router) {}
 
   ngOnInit() {}
 
-  resetField() {
-    this.username = "";
-    this.password = "";
-    this.usernameFieldElement.nativeElement.focus();
-  }
-
   onSignIn() {
-    this.router.navigate(["signin"]);
+    this._router.navigate(["signin"]);
   }
 
   onSubmit() {
-    this.authService.login(this.username, this.password).then(res => {
+    this._authService.login(this.username, this.password).then(res => {
       if (res.success) {
         if (res.type == "student") {
-          this.router.navigate(["/student/overview"]);
+          this._router.navigate(["/student/overview"]);
         } else if (res.type == "tutor") {
-          this.router.navigate(["/tutor/overview"]);
+          this._router.navigate(["/tutor/overview"]);
         }
       } else {
         this.alertData = {
@@ -50,5 +44,11 @@ export class LoginComponent implements OnInit {
         this.resetField();
       }
     });
+  }
+
+  resetField() {
+    this.username = "";
+    this.password = "";
+    this.usernameFieldElement.nativeElement.focus();
   }
 }

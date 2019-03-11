@@ -4,6 +4,7 @@ import { AlertComponent } from "./alert.component";
 
 @NgModule({
   imports: [CommonModule],
+  exports: [AlertComponent],
   declarations: [AlertComponent]
 })
 export class AlertModule {}
