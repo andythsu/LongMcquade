@@ -1,13 +1,17 @@
+<div *ngIf="raiseAlert">
+  <app-alert [data]="alertData"></app-alert>
+</div>
 <div class="container">
   <h2>Login</h2>
   <form>
     <div class="form-group">
       <input
-        type="email"
-        name="email"
+        #usernameField
+        name="username"
         class="form-control"
         placeholder="Username"
         [(ngModel)]="username"
+        autofocus
       />
     </div>
     <div class="form-group">

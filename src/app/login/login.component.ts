@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth/auth.service";
 
@@ -10,22 +10,40 @@ import { AuthService } from "../services/auth/auth.service";
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
+  alertData: any;
+  raiseAlert: boolean = false;
+
+  @ViewChild("usernameField")
+  usernameFieldElement: ElementRef;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
+  resetField() {
+    this.username = "";
+    this.password = "";
+    this.usernameFieldElement.nativeElement.focus();
+  }
+
   onSubmit() {
     this.authService.login(this.username, this.password).then(res => {
       if (res.success) {
-        console.log(res);
         if (res.type == "student") {
           this.router.navigate(["/student/overview"]);
         } else if (res.type == "tutor") {
           this.router.navigate(["/tutor/overview"]);
         }
       } else {
-        console.log("wrong credentials");
+        this.alertData = {
+          message: "Wrong Credentials",
+          type: "danger"
+        };
+        this.raiseAlert = true;
+        setTimeout(() => {
+          this.raiseAlert = false;
+        }, 1500);
+        this.resetField();
       }
     });
   }

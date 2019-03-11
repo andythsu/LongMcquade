@@ -8,7 +8,7 @@ export class AuthService {
 
   fakeUser = "aaa";
   fakePass = "123";
-  fakeUserType = "student";
+  fakeUserType = "tutor";
   currentUser: string;
   TOKEN: string = "user";
 
