@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ElementRef } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 
 @Component({
   selector: "app-alert",
@@ -12,9 +12,6 @@ export class AlertComponent implements OnInit, OnDestroy {
   public message: string = "general message";
 
   public type: string = "primary";
-
-  DURATION = 1500;
-  public display: boolean = true;
 
   constructor() {}
 

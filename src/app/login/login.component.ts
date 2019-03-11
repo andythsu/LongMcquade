@@ -26,6 +26,10 @@ export class LoginComponent implements OnInit {
     this.usernameFieldElement.nativeElement.focus();
   }
 
+  onSignIn() {
+    this.router.navigate(["signin"]);
+  }
+
   onSubmit() {
     this.authService.login(this.username, this.password).then(res => {
       if (res.success) {
