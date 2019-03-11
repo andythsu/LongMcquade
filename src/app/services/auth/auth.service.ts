@@ -8,6 +8,7 @@ export class AuthService {
 
   fakeUser = "aaa";
   fakePass = "123";
+  fakeUserType = "student";
   currentUser: string;
   TOKEN: string = "user";
 
@@ -22,7 +23,10 @@ export class AuthService {
       if (username == this.fakeUser && password == this.fakePass) {
         this.currentUser = username;
         localStorage.setItem(this.TOKEN, this.currentUser);
-        resolve(true);
+        resolve({
+          success: true,
+          type: this.fakeUserType
+        });
       }
       resolve(false);
     });

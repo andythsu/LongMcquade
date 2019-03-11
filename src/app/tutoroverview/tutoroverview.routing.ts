@@ -1,16 +1,14 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { OverviewComponent } from "./overview.component";
-import { BookingComponent } from "./booking/booking.component";
+import { TutorOverviewComponent } from "./tutoroverview.component";
 import { AuthguardService } from "../services/authguard/authguard.service";
-import { RatingComponent } from "./rating/rating.component";
+import { TutorHomeComponent } from "./tutorhome/tutorhome.component";
 import { ForumComponent } from "../forum/forum.component";
-import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
   {
-    path: "student/overview",
-    component: OverviewComponent,
+    path: "tutor/overview",
+    component: TutorOverviewComponent,
     canActivate: [AuthguardService],
     children: [
       {
@@ -20,15 +18,7 @@ const routes: Routes = [
       },
       {
         path: "home",
-        component: HomeComponent
-      },
-      {
-        path: "booking",
-        component: BookingComponent
-      },
-      {
-        path: "rating",
-        component: RatingComponent
+        component: TutorHomeComponent
       },
       {
         path: "forum",
@@ -42,4 +32,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class OverviewRoutingModule {}
+export class TutorOverviewRoutingModule {}

@@ -17,8 +17,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.authService.login(this.username, this.password).then(res => {
-      if (res) {
-        this.router.navigate(["/overview"]);
+      if (res.success) {
+        console.log(res);
+        if (res.type == "student") {
+          this.router.navigate(["/student/overview"]);
+        } else if (res.type == "tutor") {
+          this.router.navigate(["/tutor/overview"]);
+        }
       } else {
         console.log("wrong credentials");
       }
