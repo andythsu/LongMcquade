@@ -8,6 +8,10 @@ import { Router } from "@angular/router";
 })
 export class SigninComponent implements OnInit {
   public alertData: any;
+  public raiseAlert: boolean = false;
+
+  public username: string;
+  public password: string;
 
   constructor(private _router: Router) {}
 
