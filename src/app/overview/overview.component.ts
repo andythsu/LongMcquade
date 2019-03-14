@@ -16,7 +16,8 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this._authService.currentUser;
+    this.user = this._authService.userService.getCurrentUser();
+    console.log(this.user);
   }
 
   onLogout() {

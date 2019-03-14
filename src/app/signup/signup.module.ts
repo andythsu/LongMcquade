@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { SigninComponent } from "./signin.component";
+import { SignupComponent } from "./signup.component";
 import { FormsModule } from "@angular/forms";
 import { AlertModule } from "../alert/alert.module";
 
 @NgModule({
   imports: [CommonModule, FormsModule, AlertModule],
-  declarations: [SigninComponent]
+  declarations: [SignupComponent]
 })
-export class SigninModule {}
+export class SignupModule {}

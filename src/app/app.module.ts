@@ -7,14 +7,14 @@ import { LoginModule } from "./login/login.module";
 import { PagenotfoundModule } from "./pagenotfound/pagenotfound.module";
 import { OverviewModule } from "./overview/overview.module";
 import { TutorOverviewModule } from "./tutoroverview/tutoroverview.module";
-import { SigninModule } from "./signin/signin.module";
+import { SignupModule } from "./signup/signup.module";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     TutorOverviewModule,
     OverviewModule,
-    SigninModule,
+    SignupModule,
     LoginModule,
     PagenotfoundModule,
     BrowserModule,

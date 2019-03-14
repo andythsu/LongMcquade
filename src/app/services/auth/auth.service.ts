@@ -1,28 +1,36 @@
 import { Injectable } from "@angular/core";
+import { UserService } from "../user/user.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
-  constructor() {}
-
   fakeUser = "aaa";
   fakePass = "123";
-  fakeUserType = "tutor";
-  currentUser: string;
-  TOKEN: string = "user";
+  fakeUserType = "student";
+  TOKEN_NAME: string = "user";
+  userService: UserService;
+
+  constructor(private UserService: UserService) {
+    this.userService = UserService;
+  }
 
   isAuthenticated(): boolean {
-    if (this.currentUser === null || this.currentUser === undefined) {
-      this.currentUser = localStorage.getItem(this.TOKEN);
+    if (
+      this.userService.getCurrentUser() === null ||
+      this.userService.getCurrentUser() === undefined
+    ) {
+      this.userService.setCurrentUser(localStorage.getItem(this.TOKEN_NAME));
     }
-    return this.currentUser !== null && this.currentUser !== undefined;
+    return (
+      this.userService.getCurrentUser() !== null &&
+      this.userService.getCurrentUser() !== undefined
+    );
   }
   login(username, password): Promise<any> {
     return new Promise((resolve, reject) => {
       if (username == this.fakeUser && password == this.fakePass) {
-        this.currentUser = username;
-        localStorage.setItem(this.TOKEN, this.currentUser);
+        localStorage.setItem(this.TOKEN_NAME, username);
         resolve({
           success: true,
           type: this.fakeUserType
@@ -32,7 +40,7 @@ export class AuthService {
     });
   }
   logout() {
-    this.currentUser = undefined;
-    localStorage.removeItem(this.TOKEN);
+    this.userService.setCurrentUser(undefined);
+    localStorage.removeItem(this.TOKEN_NAME);
   }
 }

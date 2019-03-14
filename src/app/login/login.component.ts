@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSignIn() {
-    this._router.navigate(["signin"]);
+  onSignup() {
+    this._router.navigate(["signup"]);
   }
 
   onSubmit() {
