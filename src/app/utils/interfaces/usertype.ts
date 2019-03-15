@@ -17,5 +17,5 @@ export interface musician extends user {
   instrument?: string;
 }
 export interface organization extends user {
-  name?: string;
+  orgName?: string;
 }
