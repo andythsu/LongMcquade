@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
 import { UserService } from "../user/user.service";
+import { HttpClient } from "@angular/common/http";
+
+import { config } from "../../utils/config";
 
 @Injectable({
   providedIn: "root"
@@ -9,19 +12,13 @@ export class AuthService {
   fakePass = "123";
   fakeUserType = "student";
   TOKEN_NAME: string = "user";
-  userService: UserService;
 
-  constructor(private UserService: UserService) {
-    this.userService = UserService;
-  }
+  constructor(
+    private userService: UserService,
+    private httpClient: HttpClient
+  ) {}
 
   isAuthenticated(): boolean {
-    if (
-      this.userService.getCurrentUser() === null ||
-      this.userService.getCurrentUser() === undefined
-    ) {
-      this.userService.setCurrentUser(localStorage.getItem(this.TOKEN_NAME));
-    }
     return (
       this.userService.getCurrentUser() !== null &&
       this.userService.getCurrentUser() !== undefined
@@ -29,14 +26,18 @@ export class AuthService {
   }
   login(username, password): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (username == this.fakeUser && password == this.fakePass) {
-        localStorage.setItem(this.TOKEN_NAME, username);
-        resolve({
-          success: true,
-          type: this.fakeUserType
+      this.httpClient
+        .post(config.server + "/user/userLogin", { username, password })
+        .subscribe(data => {
+          this.userService.setCurrentUser(data);
+          const type = this.userService.getCurrentUser().type;
+          const id = this.userService.getCurrentUser().id.toString();
+          localStorage.setItem(this.TOKEN_NAME, id);
+          resolve({
+            success: true,
+            type
+          });
         });
-      }
-      resolve(false);
     });
   }
   logout() {

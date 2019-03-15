@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth/auth.service";
+import { UserTypeEnum } from "../utils/constants/usertype";
 
 @Component({
   selector: "app-login",
@@ -27,10 +28,12 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this._authService.login(this.username, this.password).then(res => {
       if (res.success) {
-        if (res.type == "student") {
+        if (res.type == UserTypeEnum.STUDENT) {
           this._router.navigate(["/student/overview"]);
-        } else if (res.type == "tutor") {
+        } else if (res.type == UserTypeEnum.TUTOR) {
           this._router.navigate(["/tutor/overview"]);
+        } else if (res.type == UserTypeEnum.MUSICIAN) {
+        } else if (res.type == UserTypeEnum.ORGANIZATION) {
         }
       } else {
         this.alertData = {
