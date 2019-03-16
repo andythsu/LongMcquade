@@ -1,3 +1,29 @@
-<p>
-  rating works!
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tutor Name</th>
+      <th scope="col">Instrument</th>
+      <th scope="col">Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tutor of passedClassesTutors">
+      <td>{{ tutor.name }}</td>
+      <td>{{ tutor.instrument }}</td>
+      <td>
+        <select class="form-control" [(ngModel)]="tutor.rate">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </td>
+      <td>
+        <button class="btn btn-primary" (click)="onSubmitBtn(tutor)">
+          Submit
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

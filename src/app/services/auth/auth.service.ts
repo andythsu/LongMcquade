@@ -11,7 +11,7 @@ export class AuthService {
   fakeUser = "aaa";
   fakePass = "123";
   fakeUserType = "student";
-  TOKEN_NAME: string = "user";
+  TOKEN_NAME: string = "userId";
 
   constructor(
     private userService: UserService,
@@ -20,14 +20,18 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return (
-      this.userService.getCurrentUser() !== null &&
-      this.userService.getCurrentUser() !== undefined
+      // this.userService.getCurrentUser() !== null &&
+      // this.userService.getCurrentUser() !== undefined
+      true
     );
   }
   login(username, password): Promise<any> {
     return new Promise((resolve, reject) => {
       this.httpClient
-        .post(config.server + "/user/userLogin", { username, password })
+        .post(config.server + config.userApi + "/userLogin", {
+          username,
+          password
+        })
         .subscribe(data => {
           this.userService.setCurrentUser(data);
           const type = this.userService.getCurrentUser().type;

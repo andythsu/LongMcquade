@@ -1,0 +1,29 @@
+<form>
+  <div class="form-group">
+    <input
+      name="subject"
+      class="form-control"
+      placeholder="Enter subject"
+      [(ngModel)]="subject"
+    />
+  </div>
+  <div class="form-group">
+    <textarea
+      name="content"
+      class="form-control"
+      placeholder="Enter content"
+      cols="30"
+      rows="10"
+      [(ngModel)]="content"
+    ></textarea>
+  </div>
+
+  <button class="btn btn-primary" (click)="onSubmitBtn()">Submit</button>
+  <button
+    class="btn btn-danger"
+    (click)="onCancelBtn()"
+    style="margin-left: 10px"
+  >
+    Cancel
+  </button>
+</form>

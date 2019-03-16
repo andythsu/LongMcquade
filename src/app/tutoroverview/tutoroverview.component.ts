@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../services/auth/auth.service";
 import { Router } from "@angular/router";
+import { AlertService } from "../services/alert/alert.service";
 
 @Component({
   selector: "app-tutoroverview",
@@ -8,7 +9,11 @@ import { Router } from "@angular/router";
   styleUrls: ["./tutoroverview.component.css"]
 })
 export class TutorOverviewComponent implements OnInit {
-  constructor(private _authService: AuthService, private _router: Router) {}
+  constructor(
+    private _authService: AuthService,
+    private _router: Router,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit() {}
 

@@ -1,3 +1,27 @@
-<p>
-  forum works!
-</p>
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Content</th>
+        <th>Posted By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let forum of forums">
+        <td>{{ forum.subject }}</td>
+        <td>{{ forum.content }}</td>
+        <td>{{ forum.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div style="float: right; margin-right: 50px">
+  <button
+    class="btn btn-secondary"
+    style="border-radius: 100%; font-size: 24px; font-weight: bold"
+    (click)="onPostForumBtn()"
+  >
+    +
+  </button>
+</div>

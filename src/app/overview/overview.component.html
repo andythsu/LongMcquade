@@ -19,5 +19,8 @@
     <button (click)="onLogout()">Logout</button>
   </div>
 </nav>
-
+<app-alert
+  *ngIf="alertService.raiseAlert"
+  [data]="alertService.alertData"
+></app-alert>
 <router-outlet> </router-outlet>

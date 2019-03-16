@@ -6,6 +6,7 @@ import { AuthguardService } from "../services/authguard/authguard.service";
 import { RatingComponent } from "./rating/rating.component";
 import { ForumComponent } from "../forum/forum.component";
 import { HomeComponent } from "./home/home.component";
+import { ForumPostComponent } from "../forumpost/forumpost.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: "forum",
         component: ForumComponent
+      },
+      {
+        path: "forum/post",
+        component: ForumPostComponent
       }
     ]
   }

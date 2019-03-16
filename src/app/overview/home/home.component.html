@@ -1,3 +1,22 @@
-<p>
-  home works!
-</p>
+<h2>Hello {{ user.name }}</h2>
+<br />
+<br />
+<h3>Upcoming classes</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tutor Name</th>
+      <th scope="col">Location</th>
+      <th scope="col">Instrument</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let class of upcomingClasses">
+      <td>{{ class.tutor_name }}</td>
+      <td>{{ class.tutor_location }}</td>
+      <td>{{ class.tutor_instrument }}</td>
+      <td>{{ class.time }}</td>
+    </tr>
+  </tbody>
+</table>

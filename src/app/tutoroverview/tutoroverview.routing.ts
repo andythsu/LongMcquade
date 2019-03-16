@@ -4,6 +4,8 @@ import { TutorOverviewComponent } from "./tutoroverview.component";
 import { AuthguardService } from "../services/authguard/authguard.service";
 import { TutorHomeComponent } from "./tutorhome/tutorhome.component";
 import { ForumComponent } from "../forum/forum.component";
+import { ForumPostComponent } from "../forumpost/forumpost.component";
+import { TutoravailabletimeComponent } from "./tutoravailabletime/tutoravailabletime.component";
 
 const routes: Routes = [
   {
@@ -23,6 +25,14 @@ const routes: Routes = [
       {
         path: "forum",
         component: ForumComponent
+      },
+      {
+        path: "availableTime",
+        component: TutoravailabletimeComponent
+      },
+      {
+        path: "forum/post",
+        component: ForumPostComponent
       }
     ]
   }

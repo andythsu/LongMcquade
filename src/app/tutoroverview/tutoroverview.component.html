@@ -5,6 +5,11 @@
         <a class="nav-link" [routerLink]="['./home']"> Home</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./availableTime']">
+          Available Time</a
+        >
+      </li>
+      <li class="nav-item">
         <a class="nav-link" [routerLink]="['./forum']"> Forum</a>
       </li>
     </ul>
@@ -14,4 +19,8 @@
   </div>
 </nav>
 
+<app-alert
+  *ngIf="alertService.raiseAlert"
+  [data]="alertService.alertData"
+></app-alert>
 <router-outlet> </router-outlet>

@@ -1,0 +1,45 @@
+<form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Enter your availability</label>
+
+    <br />
+
+    <ngb-datepicker
+      name="datepicker"
+      #dp
+      [(ngModel)]="model"
+      (navigate)="date = $event.next"
+    ></ngb-datepicker>
+
+    <br />
+
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="selectToday()">
+      Select Today
+    </button>
+    <button
+      class="btn btn-sm btn-outline-primary mr-2"
+      (click)="dp.navigateTo()"
+    >
+      To current month
+    </button>
+
+    <hr />
+    <ngb-timepicker name="timepicker" [(ngModel)]="time"></ngb-timepicker>
+  </div>
+
+  <button class="btn btn-primary" (click)="onSubmitBtn()">Submit</button>
+</form>
+
+<hr />
+
+<h3>Your current availability</h3>
+<table>
+  <thead>
+    <th>Time</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let availability of availabilities">
+      <td>{{ availability.EST }}</td>
+    </tr>
+  </tbody>
+</table>

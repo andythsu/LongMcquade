@@ -3,12 +3,15 @@ import { Router } from "@angular/router";
 
 import { UserTypeEnum } from "../utils/constants/usertype";
 
+import { config } from "../utils/config";
+
 import {
   student,
   tutor,
   musician,
   organization
 } from "../utils/interfaces/usertype";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-signup",
@@ -22,6 +25,8 @@ export class SignupComponent implements OnInit {
 
   public username: string;
   public password: string;
+  public age: Number;
+  public gender: Number = 0;
 
   public showStudentSignup: boolean = true;
   public showTutorSignup: boolean = false;
@@ -49,7 +54,7 @@ export class SignupComponent implements OnInit {
     type: UserTypeEnum.ORGANIZATION
   };
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private httpClient: HttpClient) {}
 
   ngOnInit() {
     this.UserTypeEnum = UserTypeEnum;
@@ -81,20 +86,82 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  postToDb(data) {
+    this.httpClient
+      .post<any>(config.server + "/user", data)
+      .subscribe(result => {
+        const { error } = result;
+        if (error) {
+          this.displayAlert(error.message, "danger");
+          return;
+        }
+        this.displayAlert("successfully signed up", "success", () => {
+          this._router.navigate(["login"]);
+        });
+      });
+  }
+
+  displayAlert(msg, type, callback?) {
+    const message = msg ? msg : "no message initialized";
+    this.alertData = {
+      message,
+      type
+    };
+    this.raiseAlert = true;
+    setTimeout(() => {
+      this.raiseAlert = false;
+      if (callback) {
+        callback();
+      }
+    }, 1500);
+  }
+
   onSubmitBtn() {
     // do a post to DB
+    let username = this.username;
+    let password = this.password;
+    let age = this.age;
+    let gender = this.gender;
     if (this.showStudentSignup) {
-      console.log(this.student);
+      this.postToDb({
+        name: username,
+        password,
+        age,
+        gender,
+        type: this.student.type,
+        instrument: this.student.instrument
+      });
     } else if (this.showTutorSignup) {
-      console.log(this.tutor);
+      this.postToDb({
+        name: username,
+        password,
+        age,
+        gender,
+        type: this.tutor.type,
+        location: this.tutor.location,
+        instrument: this.tutor.instrument
+      });
     } else if (this.showMusicianSignup) {
-      console.log(this.musician);
+      this.postToDb({
+        name: username,
+        password,
+        age,
+        gender,
+        type: this.musician.type,
+        instrument: this.musician.instrument
+      });
     } else if (this.showOrganizationSignup) {
-      console.log(this.organization);
+      this.postToDb({
+        name: username,
+        password,
+        age,
+        gender,
+        type: this.organization.type,
+        instrument: this.organization.orgName
+      });
     } else {
       console.error("cannot sign up user");
     }
-    // this._router.navigate(["login"]);
   }
 
   onCancelBtn() {

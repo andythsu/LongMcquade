@@ -8,6 +8,7 @@ import {
   musician,
   organization
 } from "../utils/interfaces/usertype";
+import { AlertService } from "../services/alert/alert.service";
 
 @Component({
   selector: "app-overview",
@@ -19,7 +20,8 @@ export class OverviewComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private alertService: AlertService
   ) {
     if (!this._authService.isAuthenticated()) {
       this._router.navigate(["login"]);

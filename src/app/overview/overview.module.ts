@@ -7,6 +7,8 @@ import { BookingModule } from "./booking/booking.module";
 import { RatingModule } from "./rating/rating.module";
 import { ForumModule } from "../forum/forum.module";
 import { HomeModule } from "./home/home.module";
+import { AlertModule } from "../alert/alert.module";
+import { ForumPostModule } from "../forumpost/forumpost.module";
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { HomeModule } from "./home/home.module";
     BookingModule,
     RatingModule,
     ForumModule,
-    HomeModule
+    ForumPostModule,
+    HomeModule,
+    AlertModule
   ],
   declarations: [OverviewComponent],
   providers: [AuthguardService]
