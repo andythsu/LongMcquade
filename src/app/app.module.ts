@@ -9,6 +9,7 @@ import { PagenotfoundModule } from "./pagenotfound/pagenotfound.module";
 import { OverviewModule } from "./overview/overview.module";
 import { TutorOverviewModule } from "./tutoroverview/tutoroverview.module";
 import { SignupModule } from "./signup/signup.module";
+import { MusicianOverviewModule } from "./musicianoverview/musicianoverview.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { SignupModule } from "./signup/signup.module";
     BrowserModule,
     HttpClientModule,
     TutorOverviewModule,
+    MusicianOverviewModule,
     OverviewModule,
     SignupModule,
     LoginModule,
