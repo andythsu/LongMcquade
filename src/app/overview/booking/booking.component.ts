@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { UserGenderEnum } from "../../utils/constants/userGender";
 import { AlertService } from "src/app/services/alert/alert.service";
 import { UserService } from "src/app/services/user/user.service";
 import { config } from "src/app/utils/config";
