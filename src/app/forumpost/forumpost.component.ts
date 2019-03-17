@@ -37,7 +37,7 @@ export class ForumPostComponent implements OnInit {
   }
 
   onCancelBtn() {
-    this.router.navigate(["../../home"], {
+    this.router.navigate(["../../forum"], {
       relativeTo: this.activatedRoute
     });
   }
