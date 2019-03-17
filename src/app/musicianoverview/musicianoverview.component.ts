@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class MusicianOverviewComponent implements OnInit {
   constructor(
-    private alertService: AlertService,
+    public alertService: AlertService,
     private _authService: AuthService,
     private _router: Router
   ) {}

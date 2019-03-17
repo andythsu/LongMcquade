@@ -21,7 +21,7 @@ export class OverviewComponent implements OnInit {
     private _authService: AuthService,
     private _router: Router,
     private userService: UserService,
-    private alertService: AlertService
+    public alertService: AlertService
   ) {
     if (!this._authService.isAuthenticated()) {
       this._router.navigate(["login"]);

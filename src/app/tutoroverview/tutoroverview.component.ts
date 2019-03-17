@@ -12,7 +12,7 @@ export class TutorOverviewComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _router: Router,
-    private alertService: AlertService
+    public alertService: AlertService
   ) {}
 
   ngOnInit() {}
