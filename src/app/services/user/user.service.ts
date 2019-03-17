@@ -18,18 +18,6 @@ export class UserService {
   }
 
   getCurrentUser(): student | tutor | musician | organization {
-    // need to delete this afterwards
-    if (!this.currentUser) {
-      this.currentUser = {
-        id: 4,
-        name: "leo",
-        age: 19,
-        gender: 0,
-        password: "12345",
-        type: 2,
-        instrument: "guitar"
-      };
-    }
     return this.currentUser;
   }
 }

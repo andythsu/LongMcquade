@@ -20,9 +20,8 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return (
-      // this.userService.getCurrentUser() !== null &&
-      // this.userService.getCurrentUser() !== undefined
-      true
+      this.userService.getCurrentUser() !== null &&
+      this.userService.getCurrentUser() !== undefined
     );
   }
   login(username, password): Promise<any> {
