@@ -42,7 +42,6 @@ export class OrgPerformanceComponent implements OnInit {
   }
   removeBox(box) {
     let index = this.boxes.indexOf(box);
-    console.log("index", index);
     if (index > -1) {
       this.boxes.splice(index, 1);
     }

@@ -21,11 +21,9 @@ export class BookingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(UserGenderEnum);
     this.httpClient
       .get<any>(config.server + config.tutorApi + "/availableTime")
       .subscribe(data => {
-        console.log("data", data);
         this.tutorList = data;
       });
   }
@@ -52,7 +50,6 @@ export class BookingComponent implements OnInit {
         this.tutorList = this.tutorList.filter(
           list => list.available_time_id !== tutor.available_time_id
         );
-        console.log(this.tutorList);
       });
   }
 }
