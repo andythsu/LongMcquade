@@ -1,0 +1,29 @@
+<h4>
+  Here are the upcoming performances. You can contact the organization directly
+  if interested
+</h4>
+
+<br />
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Organization Name</th>
+      <th>Organization Phone</th>
+      <th>Performance Name</th>
+      <th>Performance Location</th>
+      <th>Performance Time</th>
+      <th>Performance Missing Instruments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let performance of performances">
+      <td>{{ performance.orgName }}</td>
+      <td>{{ performance.orgPhone }}</td>
+      <td>{{ performance.name }}</td>
+      <td>{{ performance.location }}</td>
+      <td>{{ performance.time }}</td>
+      <td>{{ performance.instrument }}</td>
+    </tr>
+  </tbody>
+</table>

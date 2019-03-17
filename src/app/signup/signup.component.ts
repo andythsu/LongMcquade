@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
   };
 
   public organization: organization = {
-    name: "",
+    orgName: "",
     type: UserTypeEnum.ORGANIZATION
   };
 
@@ -157,7 +157,8 @@ export class SignupComponent implements OnInit {
         age,
         gender,
         type: this.organization.type,
-        instrument: this.organization.orgName
+        orgName: this.organization.orgName,
+        orgPhone: this.organization.orgPhone
       });
     } else {
       console.error("cannot sign up user");

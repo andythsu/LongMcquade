@@ -1,1 +1,21 @@
-<h3>Hello {{ user.name }}</h3>
+<h3>Hello {{ user.name | titlecase }}</h3>
+
+<hr />
+
+<h3>Upcoming performances</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Time</th>
+      <th>Missing instrument</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let performance of performances">
+      <td>{{ performance.location }}</td>
+      <td>{{ performance.time }}</td>
+      <td>{{ performance.instrument }}</td>
+    </tr>
+  </tbody>
+</table>

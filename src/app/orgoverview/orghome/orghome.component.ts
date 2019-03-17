@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/services/user/user.service";
 import { organization } from "src/app/utils/interfaces/usertype";
+import { HttpClient } from "@angular/common/http";
+import { config } from "src/app/utils/config";
 
 @Component({
   selector: "app-orghome",
@@ -9,10 +11,21 @@ import { organization } from "src/app/utils/interfaces/usertype";
 })
 export class OrgHomeComponent implements OnInit {
   user: organization;
+  performances: any;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private httpClient: HttpClient
+  ) {}
 
   ngOnInit() {
     this.user = this.userService.getCurrentUser();
+    this.httpClient
+      .get<any>(
+        config.server + config.orgApi + "/" + this.user.id + "/performance"
+      )
+      .subscribe(data => {
+        this.performances = data;
+      });
   }
 }

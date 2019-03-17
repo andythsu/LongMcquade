@@ -3,5 +3,6 @@ export const config = {
   userApi: "/user",
   tutorApi: "/tutor",
   studentApi: "/student",
-  forumApi: "/forum"
+  forumApi: "/forum",
+  orgApi: "/org"
 };

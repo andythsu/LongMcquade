@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { NgbDateStruct, NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
 import { AlertService } from "src/app/services/alert/alert.service";
+import { HttpClient } from "@angular/common/http";
+import { config } from "src/app/utils/config";
+import { UserService } from "src/app/services/user/user.service";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-orgperformance",
@@ -20,7 +24,11 @@ export class OrgPerformanceComponent implements OnInit {
 
   constructor(
     private calendar: NgbCalendar,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private httpClient: HttpClient,
+    private userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {}
@@ -30,8 +38,7 @@ export class OrgPerformanceComponent implements OnInit {
   }
 
   addBox() {
-    this.boxes.push(this.boxIndex);
-    this.boxIndex += 1;
+    this.boxes.push(this.boxIndex++);
   }
   removeBox(box) {
     let index = this.boxes.indexOf(box);
@@ -52,8 +59,11 @@ export class OrgPerformanceComponent implements OnInit {
     }
 
     let instruments = [];
-    this.boxes.map(box => instruments.push(this.boxValue[box]));
-    console.log(instruments);
+    this.boxes.map(box => {
+      if (this.boxValue[box]) {
+        instruments.push(this.boxValue[box]);
+      }
+    });
 
     const month =
       this.model.month >= 10 ? this.model.month : "0" + this.model.month;
@@ -63,6 +73,30 @@ export class OrgPerformanceComponent implements OnInit {
       this.time.minute >= 10 ? this.time.minute : "0" + this.time.minute;
     let d =
       this.model.year + "-" + month + "-" + day + " " + hour + ":" + minute;
-    console.log(d);
+
+    this.httpClient
+      .post<any>(
+        config.server +
+          config.orgApi +
+          "/" +
+          this.userService.getCurrentUser().id +
+          "/performance",
+        {
+          location: this.location,
+          time: d,
+          instruments
+        }
+      )
+      .subscribe(result => {
+        if (result.error) {
+          this.alertService.displayAlert(result.error.message, "danger");
+          return;
+        }
+        this.alertService.displayAlert("successfully posted", "success", () => {
+          this.router.navigate(["../home"], {
+            relativeTo: this.activatedRoute
+          });
+        });
+      });
   }
 }

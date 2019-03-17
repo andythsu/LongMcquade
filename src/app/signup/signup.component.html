@@ -136,10 +136,18 @@
 <ng-template #organizationSignupTemplate>
   <div class="form-group">
     <input
-      name="instrument"
+      name="orgName"
       class="form-control"
       placeholder="what is the organization name"
-      [(ngModel)]="organization.name"
+      [(ngModel)]="organization.orgName"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      name="orgPhone"
+      class="form-control"
+      placeholder="what is the organization phone number"
+      [(ngModel)]="organization.orgPhone"
     />
   </div>
 </ng-template>

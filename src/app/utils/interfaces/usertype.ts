@@ -18,4 +18,5 @@ export interface musician extends user {
 }
 export interface organization extends user {
   orgName?: string;
+  orgPhone?: Number;
 }

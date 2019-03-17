@@ -26,20 +26,24 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this._authService.login(this.username, this.password).then(res => {
-      if (res.success) {
-        if (res.type == UserTypeEnum.STUDENT) {
-          this._router.navigate(["/student/overview"]);
-        } else if (res.type == UserTypeEnum.TUTOR) {
-          this._router.navigate(["/tutor/overview"]);
-        } else if (res.type == UserTypeEnum.MUSICIAN) {
-          this._router.navigate(["/musician/overview"]);
-        } else if (res.type == UserTypeEnum.ORGANIZATION) {
-          this._router.navigate(["/org/overview"]);
+    this._authService
+      .login(this.username, this.password)
+      .then(res => {
+        if (res.success) {
+          if (res.type == UserTypeEnum.STUDENT) {
+            this._router.navigate(["/student/overview"]);
+          } else if (res.type == UserTypeEnum.TUTOR) {
+            this._router.navigate(["/tutor/overview"]);
+          } else if (res.type == UserTypeEnum.MUSICIAN) {
+            this._router.navigate(["/musician/overview"]);
+          } else if (res.type == UserTypeEnum.ORGANIZATION) {
+            this._router.navigate(["/org/overview"]);
+          }
         }
-      } else {
+      })
+      .catch(message => {
         this.alertData = {
-          message: "Wrong Credentials",
+          message: message ? message : "Wrong Credentials",
           type: "danger"
         };
         this.raiseAlert = true;
@@ -47,8 +51,7 @@ export class LoginComponent implements OnInit {
           this.raiseAlert = false;
         }, 1500);
         this.resetField();
-      }
-    });
+      });
   }
 
   resetField() {

@@ -28,11 +28,15 @@ export class AuthService {
   login(username, password): Promise<any> {
     return new Promise((resolve, reject) => {
       this.httpClient
-        .post(config.server + config.userApi + "/userLogin", {
+        .post<any>(config.server + config.userApi + "/userLogin", {
           username,
           password
         })
         .subscribe(data => {
+          if (data.error) {
+            reject(data.error.message);
+            return;
+          }
           this.userService.setCurrentUser(data);
           const type = this.userService.getCurrentUser().type;
           const id = this.userService.getCurrentUser().id.toString();
