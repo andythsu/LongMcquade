@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         } else if (res.type == UserTypeEnum.MUSICIAN) {
           this._router.navigate(["/musician/overview"]);
         } else if (res.type == UserTypeEnum.ORGANIZATION) {
-          this._router.navigate(["/organization/overview"]);
+          this._router.navigate(["/org/overview"]);
         }
       } else {
         this.alertData = {

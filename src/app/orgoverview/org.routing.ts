@@ -1,14 +1,15 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthguardService } from "../services/authguard/authguard.service";
-import { MusicianOverviewComponent } from "./musicianoverview.component";
-import { MusicianHomeComponent } from "./musicianhome/musicianhome.component";
+import { OrgOverviewComponent } from "./orgoverview.component";
+import { OrgHomeComponent } from "./orghome/orghome.component";
 import { ForumComponent } from "../forum/forum.component";
+import { OrgPerformanceComponent } from "./orgperformance/orgperformance.component";
 
 const routes: Routes = [
   {
-    path: "musician/overview",
-    component: MusicianOverviewComponent,
+    path: "org/overview",
+    component: OrgOverviewComponent,
     canActivate: [AuthguardService],
     children: [
       {
@@ -18,7 +19,11 @@ const routes: Routes = [
       },
       {
         path: "home",
-        component: MusicianHomeComponent
+        component: OrgHomeComponent
+      },
+      {
+        path: "performance",
+        component: OrgPerformanceComponent
       },
       {
         path: "forum",
@@ -32,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MusicianOverviewRoutingModule {}
+export class OrgOverviewRoutingModule {}

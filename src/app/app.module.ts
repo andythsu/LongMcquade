@@ -10,6 +10,7 @@ import { OverviewModule } from "./overview/overview.module";
 import { TutorOverviewModule } from "./tutoroverview/tutoroverview.module";
 import { SignupModule } from "./signup/signup.module";
 import { MusicianOverviewModule } from "./musicianoverview/musicianoverview.module";
+import { OrgOverviewModule } from "./orgoverview/orgoverview.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { MusicianOverviewModule } from "./musicianoverview/musicianoverview.modu
     HttpClientModule,
     TutorOverviewModule,
     MusicianOverviewModule,
+    OrgOverviewModule,
     OverviewModule,
     SignupModule,
     LoginModule,

@@ -1,0 +1,60 @@
+<form>
+  <h3>Add performance detail</h3>
+  <br />
+
+  <div class="form-group">
+    <input
+      type="text"
+      name="location"
+      [(ngModel)]="location"
+      placeholder="Location"
+    />
+  </div>
+
+  <div class="form-group">
+    <ngb-datepicker
+      name="datepicker"
+      #dp
+      [(ngModel)]="model"
+      (navigate)="date = $event.next"
+    ></ngb-datepicker>
+    <br />
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="selectToday()">
+      Select Today
+    </button>
+  </div>
+
+  <div class="form-group">
+    <ngb-timepicker name="timepicker" [(ngModel)]="time"></ngb-timepicker>
+  </div>
+
+  <hr />
+
+  <h4>Add missing players</h4>
+
+  <div class="form-group" *ngFor="let box of boxes">
+    <input
+      type="text"
+      name="boxInput{{ box }}"
+      [(ngModel)]="boxValue[box]"
+      placeholder="Instrument"
+    />
+    <button class="btn btn-danger" (click)="removeBox(box)">
+      X
+    </button>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-secondary" (click)="addBox()">
+      Add more
+    </button>
+  </div>
+
+  <hr />
+
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="onSubmit()" type="submit">
+      Submit
+    </button>
+  </div>
+</form>

@@ -21,13 +21,13 @@ export class UserService {
     // need to delete this afterwards
     if (!this.currentUser) {
       this.currentUser = {
-        id: 2,
-        name: "Laura",
-        age: 3,
+        id: 5,
+        name: "abcpub",
+        age: 30,
         gender: 1,
         password: "12345",
         type: 1,
-        instrument: "piano"
+        orgName: "ABC pub"
       };
     }
     return this.currentUser;
