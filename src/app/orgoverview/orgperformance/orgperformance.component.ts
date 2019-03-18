@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class OrgPerformanceComponent implements OnInit {
   location: string;
+  name: string;
 
   boxes: number[] = [];
   boxIndex: number = 0;
@@ -57,6 +58,11 @@ export class OrgPerformanceComponent implements OnInit {
       return;
     }
 
+    if (!this.name) {
+      this.alertService.displayAlert("you must specify a name", "danger");
+      return;
+    }
+
     let instruments = [];
     this.boxes.map(box => {
       if (this.boxValue[box]) {
@@ -83,7 +89,8 @@ export class OrgPerformanceComponent implements OnInit {
         {
           location: this.location,
           time: d,
-          instruments
+          instruments,
+          name: this.name
         }
       )
       .subscribe(result => {
