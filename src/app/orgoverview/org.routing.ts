@@ -5,6 +5,7 @@ import { OrgOverviewComponent } from "./orgoverview.component";
 import { OrgHomeComponent } from "./orghome/orghome.component";
 import { ForumComponent } from "../forum/forum.component";
 import { OrgPerformanceComponent } from "./orgperformance/orgperformance.component";
+import { ForumPostComponent } from "../forumpost/forumpost.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: "forum",
         component: ForumComponent
+      },
+      {
+        path: "forum/post",
+        component: ForumPostComponent
       }
     ]
   }
