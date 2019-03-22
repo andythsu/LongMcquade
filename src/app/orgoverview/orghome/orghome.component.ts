@@ -12,6 +12,7 @@ import { config } from "src/app/utils/config";
 export class OrgHomeComponent implements OnInit {
   user: organization;
   performances: any;
+  oldPerformances: any;
 
   constructor(
     private userService: UserService,
@@ -26,6 +27,13 @@ export class OrgHomeComponent implements OnInit {
       )
       .subscribe(data => {
         this.performances = data;
+      });
+    this.httpClient
+      .get<any>(
+        config.server + config.orgApi + "/" + this.user.id + "/oldPerformance"
+      )
+      .subscribe(data => {
+        this.oldPerformances = data;
       });
   }
 }

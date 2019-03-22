@@ -19,3 +19,23 @@
     </tr>
   </tbody>
 </table>
+
+<br />
+
+<h3>Old performances</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Time</th>
+      <th>Missing instrument</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let performance of oldPerformances">
+      <td>{{ performance.location }}</td>
+      <td>{{ performance.time }}</td>
+      <td>{{ performance.instrument }}</td>
+    </tr>
+  </tbody>
+</table>

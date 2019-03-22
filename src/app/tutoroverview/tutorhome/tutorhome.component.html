@@ -20,3 +20,25 @@
     </tr>
   </tbody>
 </table>
+
+<br />
+
+<h3>Old classes</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Student Name</th>
+      <th scope="col">Location</th>
+      <th scope="col">Instrument</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let class of oldClasses">
+      <td>{{ class.student_name }}</td>
+      <td>{{ class.location }}</td>
+      <td>{{ class.instrument }}</td>
+      <td>{{ class.time }}</td>
+    </tr>
+  </tbody>
+</table>

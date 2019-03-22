@@ -13,6 +13,7 @@ export class TutorHomeComponent implements OnInit {
   user: tutor;
 
   upcomingClasses: any;
+  oldClasses: any;
 
   constructor(
     private userService: UserService,
@@ -31,6 +32,13 @@ export class TutorHomeComponent implements OnInit {
       )
       .subscribe(data => {
         this.upcomingClasses = data;
+      });
+    this.httpClient
+      .get(
+        config.server + config.tutorApi + "/" + this.user.id + "/passedClasses"
+      )
+      .subscribe(data => {
+        this.oldClasses = data;
       });
   }
 }

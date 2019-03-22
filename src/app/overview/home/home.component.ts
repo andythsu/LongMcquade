@@ -12,6 +12,7 @@ import { config } from "src/app/utils/config";
 export class HomeComponent implements OnInit {
   user: student;
   upcomingClasses: any;
+  oldClasses: any;
 
   constructor(
     private _userService: UserService,
@@ -30,6 +31,17 @@ export class HomeComponent implements OnInit {
       )
       .subscribe(data => {
         this.upcomingClasses = data;
+      });
+    this.httpClient
+      .get(
+        config.server +
+          config.studentApi +
+          "/" +
+          this.user.id +
+          "/passedClasses"
+      )
+      .subscribe(data => {
+        this.oldClasses = data;
       });
   }
 }
