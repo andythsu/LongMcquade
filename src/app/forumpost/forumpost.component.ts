@@ -59,7 +59,7 @@ export class ForumPostComponent implements OnInit {
             "successfully posted",
             "success",
             () => {
-              this.router.navigate(["../../home"], {
+              this.router.navigate(["../../forum"], {
                 relativeTo: this.activatedRoute
               });
             }

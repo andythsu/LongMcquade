@@ -11,7 +11,7 @@
       <tr *ngFor="let forum of forums">
         <td>{{ forum.subject }}</td>
         <td>{{ forum.content }}</td>
-        <td>{{ forum.name }}</td>
+        <td>{{ forum.name | titlecase }}</td>
       </tr>
     </tbody>
   </table>
