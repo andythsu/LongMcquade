@@ -23,6 +23,11 @@ export class BookingComponent implements OnInit {
     this.httpClient
       .get<any>(config.server + config.tutorApi + "/availableTime")
       .subscribe(data => {
+        data = data.map(d => {
+          const localDate = new Date(d.time).toLocaleDateString();
+          const localTime = new Date(d.time).toLocaleTimeString();
+          return { ...d, time: localDate + " " + localTime };
+        });
         this.tutorList = data;
       });
   }
