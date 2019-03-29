@@ -16,11 +16,6 @@ export class MusicianPerformanceComponent implements OnInit {
     this.httpClient
       .get<any>(config.server + config.orgApi + "/performance")
       .subscribe(data => {
-        data = data.map(d => {
-          const localDate = new Date(d.time).toLocaleDateString();
-          const localTime = new Date(d.time).toLocaleTimeString();
-          return { ...d, time: localDate + " " + localTime };
-        });
         this.performances = data;
       });
   }

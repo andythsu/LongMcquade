@@ -26,11 +26,6 @@ export class OrgHomeComponent implements OnInit {
         config.server + config.orgApi + "/" + this.user.id + "/performance"
       )
       .subscribe(data => {
-        data = data.map(d => {
-          const localDate = new Date(d.time).toLocaleDateString();
-          const localTime = new Date(d.time).toLocaleTimeString();
-          return { ...d, time: localDate + " " + localTime };
-        });
         this.performances = data;
       });
     this.httpClient
@@ -38,11 +33,6 @@ export class OrgHomeComponent implements OnInit {
         config.server + config.orgApi + "/" + this.user.id + "/oldPerformance"
       )
       .subscribe(data => {
-        data = data.map(d => {
-          const localDate = new Date(d.time).toLocaleDateString();
-          const localTime = new Date(d.time).toLocaleTimeString();
-          return { ...d, time: localDate + " " + localTime };
-        });
         this.oldPerformances = data;
       });
   }

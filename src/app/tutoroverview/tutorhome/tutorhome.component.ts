@@ -31,11 +31,6 @@ export class TutorHomeComponent implements OnInit {
           "/upcomingClasses"
       )
       .subscribe(data => {
-        data = data.map(d => {
-          const localDate = new Date(d.time).toLocaleDateString();
-          const localTime = new Date(d.time).toLocaleTimeString();
-          return { ...d, time: localDate + " " + localTime };
-        });
         this.upcomingClasses = data;
       });
     this.httpClient
@@ -43,11 +38,6 @@ export class TutorHomeComponent implements OnInit {
         config.server + config.tutorApi + "/" + this.user.id + "/passedClasses"
       )
       .subscribe(data => {
-        data = data.map(d => {
-          const localDate = new Date(d.time).toLocaleDateString();
-          const localTime = new Date(d.time).toLocaleTimeString();
-          return { ...d, time: localDate + " " + localTime };
-        });
         this.oldClasses = data;
       });
   }
