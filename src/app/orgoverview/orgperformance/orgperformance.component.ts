@@ -98,7 +98,7 @@ export class OrgPerformanceComponent implements OnInit {
           this.alertService.displayAlert(result.error.message, "danger");
           return;
         }
-        this.alertService.displayAlert("successfully posted", "success", () => {
+        this.alertService.displayAlert("Successfully posted", "success", () => {
           this.router.navigate(["../home"], {
             relativeTo: this.activatedRoute
           });

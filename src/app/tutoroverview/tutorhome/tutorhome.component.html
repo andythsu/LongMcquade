@@ -1,5 +1,13 @@
 <h2>Hello {{ user.name | titlecase }}</h2>
 <h5>Role: Tutor</h5>
+<h5>
+  Rate:
+  {{
+    rate
+      ? "you have been rated as " + rate + " out of 5"
+      : "you have not been rated yet"
+  }}
+</h5>
 <br />
 <br />
 <h3>Upcoming classes</h3>

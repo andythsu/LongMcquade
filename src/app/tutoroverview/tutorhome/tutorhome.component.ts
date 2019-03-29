@@ -11,6 +11,7 @@ import { config } from "src/app/utils/config";
 })
 export class TutorHomeComponent implements OnInit {
   user: tutor;
+  rate: number;
 
   upcomingClasses: any;
   oldClasses: any;
@@ -39,6 +40,11 @@ export class TutorHomeComponent implements OnInit {
       )
       .subscribe(data => {
         this.oldClasses = data;
+      });
+    this.httpClient
+      .get<any>(config.server + config.tutorApi + "/" + this.user.id + "/rate")
+      .subscribe(data => {
+        this.rate = data.rate;
       });
   }
 }
